@@ -1,5 +1,0 @@
-Central KEY
-
-extra-keys = [ \
-[{macro:' ~/fuktermux/centralkey.sh', display:'central'}] \
-]
