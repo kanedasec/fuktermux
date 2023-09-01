@@ -1,11 +1,15 @@
 from flask import Flask, request, render_template
 import subprocess
 import os
+import signal
 
 app = Flask(__name__)
 
 # Specify the directory where your .txt files are located
 txt_directory = 'reports'
+
+def shutdown_server():
+    os.kill(os.getpid(), signal.SIGINT)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -32,6 +36,12 @@ def index():
                 file_path = os.path.join(txt_directory, file_name)
                 os.remove(file_path)
                 return 'File deleted successfully.'
+            except Exception as e:
+                return str(e)
+        elif command == 'shutdown_server':
+            try:
+                shutdown_server()
+                return 'Server shut down successfully.'
             except Exception as e:
                 return str(e)
     return render_template('index.html', txt_files=None, file_contents=None, file_name=None)
