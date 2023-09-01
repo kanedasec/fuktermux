@@ -4,20 +4,24 @@ import os
 
 app = Flask(__name__)
 
+# Specify the directory where your .txt files are located
+txt_directory = 'reports'
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         command = request.form.get('command')
         if command == 'list_txt_files':
             try:
-                txt_files = [f for f in os.listdir() if f.endswith('.txt')]
+                txt_files = [f for f in os.listdir(txt_directory) if f.endswith('.txt')]
                 return render_template('index.html', txt_files=txt_files)
             except Exception as e:
                 return str(e)
         elif command.startswith('cat_txt_file'):
             try:
                 file_name = command.split(':')[-1]
-                with open(file_name, 'r') as file:
+                file_path = os.path.join(txt_directory, file_name)
+                with open(file_path, 'r') as file:
                     file_contents = file.read()
                 return render_template('index.html', file_contents=file_contents, file_name=file_name)
             except Exception as e:
@@ -25,7 +29,8 @@ def index():
         elif command.startswith('delete_txt_file'):
             try:
                 file_name = command.split(':')[-1]
-                os.remove(file_name)
+                file_path = os.path.join(txt_directory, file_name)
+                os.remove(file_path)
                 return 'File deleted successfully.'
             except Exception as e:
                 return str(e)
