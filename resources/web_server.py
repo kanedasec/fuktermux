@@ -6,7 +6,7 @@ import signal
 app = Flask(__name__)
 
 # Specify the directory where your .txt files are located
-txt_directory = 'fuktermux/resources/reports'
+txt_directory = './fuktermux/resources/reports'
 
 def shutdown_server():
     os.kill(os.getpid(), signal.SIGINT)
@@ -17,7 +17,7 @@ def index():
         command = request.form.get('command')
         if command == 'list_txt_files':
             try:
-                txt_files = [f for f in os.listdir(txt_directory) if f.endswith('.txt')]
+                txt_files = [f for f in os.listdir(txt_directory)]
                 return render_template('index.html', txt_files=txt_files)
             except Exception as e:
                 return str(e)

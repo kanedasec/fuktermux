@@ -5,14 +5,15 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='estilo.css') }}">
 </head>
 <body>
-    <h1>Termux Web CLI</h1>
+    <h1>KanedaSec Hacking Central</h1>
     
     <form method="POST">
-        <button name="command" value="list_txt_files">List .txt Files</button>
+        <button name="command" value="shutdown_server">Shut Down Server</button>
+        <button name="command" value="list_txt_files">List reports Files</button>
         <br>
 
         {% if txt_files %}
-        <h2>Text Files:</h2>
+        <h2>Reports:</h2>
         <ul>
             {% for txt_file in txt_files %}
             <li>
