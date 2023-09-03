@@ -24,4 +24,8 @@ Installation (in nethunter):
 cd ~/
 git clone https://github.com/kanedasec/resources.git
 chmod +x -R resources
+
+**tools used**
+https://github.com/sherlock-project/sherlock
+
 ~~~
