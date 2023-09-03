@@ -21,12 +21,6 @@ bash fuktermux/main/[any of the scripts in the root directory]
 Installation (in nethunter):
 
 ~~~
-apt update && upgrade
-
-apt install python python3
-
-pip install flask
-
 cd ~/
 git clone https://github.com/kanedasec/resources.git
 chmod +x -R resources
